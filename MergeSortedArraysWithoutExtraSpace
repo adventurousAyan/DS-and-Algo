@@ -1,0 +1,47 @@
+package com.company;
+
+import java.util.HashMap;
+
+public class Main {
+
+    public static void main(String[] args) {
+       int[] arr1 = {1,3,5,7};
+       int[] arr2 = {0,2,6,8,9};
+       int[] arr3 = new int[arr1.length + arr2.length];
+       for(int k =0; k<arr1.length; k++){
+           arr3[k] = arr1[k];
+       }
+       int p = arr1.length;
+       for(int k =0; k<arr2.length; k++){
+            arr3[p] = arr2[k];
+            p++;
+        }
+
+       int len = arr1.length + arr2.length;
+       int gap = (int)Math.ceil((arr1.length + arr2.length)/2);
+       gap = len%2==0? gap:gap+1;
+       int k = 0;
+       int j = gap;
+       int m = 0;
+       while(gap >= 1) {
+           if(k != arr1.length && m!= arr2.length) {
+               if (arr3[k] > arr3[j]) {
+                   int temp = arr3[k];
+                   arr3[k] = arr3[j];
+                   arr3[j] = temp;
+               }
+               k++;
+               j++;
+               m++;
+           }
+           else  {
+               if(gap == 1) break;
+               gap = gap%2==0? gap/2:gap/2+1;
+              k = 0;
+              j = gap;
+              m=0;
+           }
+       }
+
+    }
+}
